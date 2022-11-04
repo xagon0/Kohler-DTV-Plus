@@ -11,6 +11,10 @@ Mac -> cgi_mac
 * Address: `http://controller_ip/mac.cgi`
 * Description: Sets a new mac address for the controller.
 
+###### Call Safety Rating
+⚠️ - 3/5 - Appears to function, but often results in controller locking up. 
+Not to mention, you really shouldn't change this value.
+
 ###### Params
 | Key | Value | Description |
 | --- | --- | --- |
@@ -40,6 +44,10 @@ Serial -> cgi_serial
 ###### Details
 * Address: `http://controller_ip/serial.cgi`
 * Description: Sets a new serial number for the controller.
+
+###### Call Safety Rating
+⚠️ - 3/5 - Appears to function, but often results in controller locking up. 
+Not to mention, you really shouldn't change this value.
 
 ###### Params
 | Key | Value | Description |
