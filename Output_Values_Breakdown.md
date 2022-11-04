@@ -25,3 +25,24 @@ No params supported for this function
 ```json
 {"url":"settings.html"}
 ```
+
+Check Updates -> cgi_check_updates
+------ 
+###### Details
+* Address: `http://controller_ip/check_updates.cgi`
+* Description: Sets a flag to check for anupdate on the next processor cycle. The flag doesn't appear on the DataTable, and seems to be a 'ghost value'. Always returns `{}`
+* Additional Details: The update task appears to be part of a greater scope that hits other specific flags, possibly related to custom firmware for hotels. It's also noted that the generic internet check may have originally been `facebook.com` but was changed to `*redacted*.kohler.com`.
+
+###### Call Safety Rating
+✅ - 0/5 - Appears to be safe to call.
+
+###### Params
+No params supported for this function
+
+###### Example Request
+`http://controller_ip/check_updates.cgi`
+
+###### Example Result
+```json
+{}
+```
