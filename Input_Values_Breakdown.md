@@ -24,6 +24,17 @@ Mac -> cgi_mac
 ###### Example Request
 `http://controller_ip/mac.cgi?first=00&second=1A&third=2B&fourth=3C&fifth=4D&sixth=5F`
 
+###### Additional Details
+```cpp
+    //Directly written to the NAND
+
+    //Subtask appears to move this into the DataTable:
+    WORD[16]     //First Four Digits as Decimal
+    WORD[17]     //Middle Four Digits as Decimal
+    WORD[18]     //Last Four Digits as Decimal
+    
+```
+
 Serial -> cgi_serial
 ------ 
 ###### Details
@@ -42,8 +53,8 @@ Serial -> cgi_serial
 `http://controller_ip/serial.cgi?first=00&second=1A&third=2B&fourth=3C`
 
 ###### Additional Details
-```cpp
+```cpp  
     //Stored in DataTable:
-    DT_WORD_S[32]     //First Four Digits as Decimal
-    DT_WORD_S[33]     //Last Four Digits as Decimal
+    WORD[32]     //First Four Digits as Decimal
+    WORD[33]     //Last Four Digits as Decimal
 ```
