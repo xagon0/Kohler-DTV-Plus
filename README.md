@@ -1,3 +1,5 @@
+#Note - This is a fork, I have begun compling my reverse engineering notes here.
+
 # Kohler-DTV-
 Results of analyzing the Kohler DTV+ system controller and associated web page.
 
