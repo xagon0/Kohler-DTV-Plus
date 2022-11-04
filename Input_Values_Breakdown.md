@@ -43,7 +43,9 @@ Serial -> cgi_serial
 
 ###### Additional Details
 ```cpp
-    //Possibly Stored in Data Table as:
-    DT_W_ControllerSerialNumberMSB		DT_WORD_S[32]
-    DT_W_ControllerSerialNumberLSB		DT_WORD_S[33]
+    //Stored in DataTable:
+    DT_WORD_S[32]     //First Four Digits as Decimal  --DT_W_ControllerSerialNumberMSB	
+    DT_WORD_S[33]     //Last Four Digits as Decimal   --DT_W_ControllerSerialNumberLSB	
+    	
+    	
 ```
