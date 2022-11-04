@@ -44,8 +44,6 @@ Serial -> cgi_serial
 ###### Additional Details
 ```cpp
     //Stored in DataTable:
-    DT_WORD_S[32]     //First Four Digits as Decimal  --DT_W_ControllerSerialNumberMSB	
-    DT_WORD_S[33]     //Last Four Digits as Decimal   --DT_W_ControllerSerialNumberLSB	
-    	
-    	
+    DT_WORD_S[32]     //First Four Digits as Decimal
+    DT_WORD_S[33]     //Last Four Digits as Decimal
 ```
