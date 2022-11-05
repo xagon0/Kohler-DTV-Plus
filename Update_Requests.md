@@ -33,9 +33,9 @@ Not to mention, you really shouldn't change this value.
     //Directly written to the NAND
 
     //Subtask appears to move this into the DataTable:
-    WORD[16]     //First Four Digits as Decimal
-    WORD[17]     //Middle Four Digits as Decimal
-    WORD[18]     //Last Four Digits as Decimal
+    WORD_S[16]     //First Four Digits as Decimal
+    WORD_S[17]     //Middle Four Digits as Decimal
+    WORD_S[18]     //Last Four Digits as Decimal
     
 ```
 
@@ -63,6 +63,6 @@ Not to mention, you really shouldn't change this value.
 ###### Additional Details
 ```cpp  
     //Stored in DataTable:
-    WORD[32]     //First Four Digits as Decimal
-    WORD[33]     //Last Four Digits as Decimal
+    WORD_S[32]     //First Four Digits as Decimal
+    WORD_S[33]     //Last Four Digits as Decimal
 ```
