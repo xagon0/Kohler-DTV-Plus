@@ -1,4 +1,4 @@
-## Functions and requests that save values 
+## Functions and requests that save/update values 
 The requests below are for updating and adjusting values inside the controller. 
 They can cause errors, lockups, and general problems up to and including removal of the software running on the controller. *Proceed with caution.*
 
