@@ -46,3 +46,8 @@ No params supported for this function
 ```json
 {}
 ```
+###### Additional Details
+```cpp
+    //Stored in DataTable:
+    BYTE_G[34]    
+```
