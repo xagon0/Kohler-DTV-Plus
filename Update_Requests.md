@@ -44,6 +44,7 @@ Serial -> cgi_serial
 ###### Details
 * Address: `http://controller_ip/serial.cgi`
 * Description: Sets a new serial number for the controller.
+* Additional Details: The serial number on the bottom of the controller is in decimal form, this value is split in half and converted to HEX for display. It's use, however, is always decimal based throughout the program.
 
 ###### Call Safety Rating
 ⚠️ - 3/5 - Appears to function, but often results in controller locking up. 
