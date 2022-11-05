@@ -78,6 +78,7 @@ Hiding -> cgi_hiding
 ###### Call Safety Rating
 ⚠️ - 4/5 - Appears to function, but often results in controller locking up. 
 The function doesn't appear to have a valid object to return, so sending the request then immediately closing the call prevents lockups.
+For what it's worth - I was never able to get the flag to revert to True. A restart of the controller will set it back.
 
 ###### Params
 | Key | Value | Description |
