@@ -67,3 +67,23 @@ Not to mention, you really shouldn't change this value.
     WORD_S[32]     //First Four Digits as Decimal
     WORD_S[33]     //Last Four Digits as Decimal
 ```
+
+Hiding -> cgi_hiding
+------ 
+###### Details
+* Address: `http://controller_ip/hiding.cgi`
+* Description: Sets a controller flag that appears to have been intended for debugging the interface. The value is visible in the `values.cgi` result as `hide_all`.
+* Additional Details: The `hide_all` value is read by the front end javascript, but does not actually do anything on the controller level. It's also overwritten by the ```javascript var hide_things = true;``` set in each \*.js file.
+
+###### Call Safety Rating
+⚠️ - 4/5 - Appears to function, but often results in controller locking up. 
+The function doesn't appear to have a valid object to return, so sending the request then immediately closing the call prevents lockups.
+
+###### Params
+| Key | Value | Description |
+| --- | --- | --- |
+|bool|true or f|a string less than 10 characters long true for true, anything else for false|
+
+
+###### Example Request
+`http://controller_ip/hiding.cgi?bool=f`
