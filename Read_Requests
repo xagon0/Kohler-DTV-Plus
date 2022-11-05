@@ -1,4 +1,4 @@
-## Functions and requests that return values 
+## Functions and requests that read/return values 
 The requests below are for returning information from the controller. 
 They can cause errors, lockups, and general problems up to and including removal of the software running on the controller. *Proceed with caution.*
 
