@@ -6,8 +6,8 @@ Overview
 ------ 
 A brief overview of the update process looks like the following:
 + The controller is told to check for updates. This can be:
-  + Calling  `http://controller_ip/check_updates.cgi` which sets a 'check for updates' variable to true. `BYTE_G[34]`
-  + Through a computed value which determines a time to check each day.
+  + By calling  `http://controller_ip/check_updates.cgi` which sets a 'check for updates' variable to true. `BYTE_G[34]`
+  + Or through a computed value which determines a time to check each day.
     + The calculation below determines what time of day to process the update.
      ```cpp  
          //Adjusted for clarity
