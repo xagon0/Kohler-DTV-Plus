@@ -21,25 +21,12 @@ A brief overview of the update process looks like the following:
          //Check_For_Update = BYTE_G[34] 
          //First4SerialNumber = WORD_S[32]
      ```
-+ if dim
-+ then
-
-
-
-* Address: `http://controller_ip/check_updates.cgi`
-* Description: Sets a flag to check for an update on the next processor cycle. Always returns `{}`
-* Additional Details: The update task appears to be part of a greater scope that hits other specific flags, possibly related to custom firmware for hotels. It's also noted that the generic internet check may have originally been `facebook.com` but was changed to `*redacted*.kohler.com`.
-
-###### Call Safety Rating
-✅ - 0/5 - Appears to be safe to call.
-
-###### Params
-No params supported for this function
-
-###### Example Request
-`http://controller_ip/check_updates.cgi`
-
-###### Example Result
-```json
-{}
-```
+    + If you wish to determine your update time, the simple calculation is: `(First4SerialNumber % 144) * 10 = Update_Time_In_Minutes_After_Midnight`
++ Verify no images are being written / downloaded. 
++ Verify internet access by resolving `*redacted*.kohler.com`, then pinging the IP address.
++ If access is confirmed, connect to a public ftp located at `*redacted ip address*` using the username: `ftpuser`, and password `*redacted*`
++ Attempt to access folder "00", but if the `const_hospitality` string `STRING_S[39]` has been set, attempt to download from that folder.
++ Download and parse the `versions.txt` file, store latest version of controller in `STRING_S[27]` and latest version of ui_amulet in `STRING_S[29]`
++ Confirm if the values are newer than the existing.
++ Download new if required.
++ Trigger processor event to process image swap.
