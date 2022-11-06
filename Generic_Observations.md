@@ -11,4 +11,4 @@ Kohler Interface (K-99693-P-NA / K-99693-NA (Old))
 + Appears to be built on the ARM AMULET microprocessor
 
 Kohler Thermostatic Valves (K-682, K-557, K-528)
-+ Appears to  be controlled with 4-wire UART (RX/RTS, TX/CTS)
++ Appears to  be controlled with 4-wire RS-485 (RX/RTS, TX/CTS)
