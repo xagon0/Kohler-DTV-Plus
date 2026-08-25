@@ -195,6 +195,30 @@ if remaining_seconds < 900:
 | M_STUCK | 60 | Motor stuck, cannot move |
 | M_HOMING | 71 | Motor homing failure |
 
+## Safety Ownership
+
+Anyone building a replacement master needs to know which safety layer lives where. The answer is good news: almost everything that matters is in the valve.
+
+**Valve-side (comes free with the hardware):**
+
+| Layer | Mechanism |
+|---|---|
+| Mixing loop | Proportional control against the valve's own thermistor. The controller sends a setpoint and reads back the result — **there is no PID loop in the controller** |
+| Hard envelope | Setpoints outside 30-49 C rejected (`RANGE_ERROR`); `MAX_WATER_TEMP` (Cx2 98 / 49 C / 120 F) is the hardware ceiling |
+| Over-temperature trips | `OVERTEMP_OUTLET` (delivered water too hot), `OVERTEMP_CONTROL` (board overheat), inlet too hot/cold |
+| Component fault detection | Thermistor open/short, motor stuck/homing, welded relay |
+| Fail-closed | Comms loss times out and closes the valve; power loss closes the solenoids. The failure direction is always OFF |
+
+**Controller-side (a replacement master must reimplement):**
+
+1. **The max-temp clamp.** The stock `max_temp` (factory 113 F / 45 C) is just a config clamp on what setpoint may be sent. Clamp in your own code at or below it; never treat the valve's 49 C ceiling as a comfort limit.
+2. **Fault monitoring.** Poll the fault register (`0x0F`); on any over-temp/motor/sensor fault, command all outlets off and latch an alarm.
+3. **Prompt 3 timer management.** The 30-minute runtime timer's reset is only accepted once >= 900 s have elapsed — naive constant polling does NOT hold it off. Decide your own max-runtime policy explicitly.
+4. **Independent commissioning check.** The reported temperature is the valve's own thermistor, not an independent measurement. Verify delivered temperature with a real thermometer once at build time.
+5. **Encoding discipline.** Cx2 to valves, Fx2 to steam — see [../control-logic/temperature-system.md](../control-logic/temperature-system.md).
+
+> **CRITICAL:** A welded relay (`WELDED`, 35) cannot be turned off by ANY controller — that is a replace-the-valve hardware fault, present with the stock system too. And note: the valve's UL/CSA listing covers the assembly as shipped; a DIY master within the documented envelope is functionally equivalent on paper but is not a listed installation.
+
 ## Massage Timing Constants
 
 Massage patterns use staggered activation of outlets with specific timing:

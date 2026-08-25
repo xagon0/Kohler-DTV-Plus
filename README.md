@@ -65,6 +65,7 @@ Three separate protocols, one controller, six device types. It's complicated —
 | Document | Description |
 |----------|-------------|
 | [CGI Endpoints](docs/web-interface/cgi-endpoints.md) | All ~68 HTTP endpoints with parameters and safety ratings |
+| [OpenAPI Spec](docs/web-interface/openapi.yaml) | Machine-readable CGI API spec (community-contributed) |
 | [Save Variable Reference](docs/web-interface/save-variable-reference.md) | Complete variable ID table (IDs 1-105) |
 | [RPC Reference](docs/web-interface/rpc-reference.md) | 60+ remote procedure calls + digital screen replacement guide |
 | [Datatable Structure](docs/web-interface/datatable-structure.md) | Memory pages, data types, ghost variables |
@@ -90,12 +91,15 @@ Three separate protocols, one controller, six device types. It's complicated —
 | [NAND Flash Recovery](docs/repair/nand-flash-recovery.md) | Chip specs, extraction, reflash, firmware upload |
 | [Boot Process](docs/repair/boot-process.md) | Bootloader flow, TFS fallback, failure modes |
 | [Firmware Files](docs/repair/firmware-files.md) | Naming conventions, S-Record format, known versions |
+| [Firmware Extraction](docs/repair/firmware-extraction.md) | Getting the controller's software off the device — what's proven impossible, and the serial/BDM/chip-off paths that remain |
 
 ### Other
 | Document | Description |
 |----------|-------------|
 | [Firmware Updates](docs/firmware-update.md) | How OTA updates work, schedule calculation |
 | [Implementation Quirks](docs/implementation-quirks.md) | Every gotcha, edge case, and "why does it do that?" |
+| [Security Notes](docs/security.md) | No-auth API, unsigned uploads, dead update server — findings and owner mitigations |
+| [Public-Record Sources](docs/public-record.md) | FCC exhibits and the DTV+ patent as documentation |
 
 ## Guides
 
