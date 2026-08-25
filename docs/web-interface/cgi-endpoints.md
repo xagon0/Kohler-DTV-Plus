@@ -230,11 +230,29 @@ Returns the list of available languages.
 
 ### `files_available.cgi`
 
-List available files on the system.
+Lists the firmware images currently staged in `\images`. Example from 0.0.3.89:
+
+```json
+{
+  "dtv2_app": "dtvplus2_app_v0.0.3.89.S19",
+  "dtv2_app_size": "4.497 MB",
+  "ui_coldfire": 0,
+  "ui_amulet": "ui_amulet_v0.1.3.72.S19",
+  "ui_amulet_size": "12.390 MB",
+  "ui_language": 0,
+  "prompt2_eeprom": 0,
+  "prompt2_flash": 0,
+  "prompt3_eeprom": 0,
+  "light_bridge": 0,
+  "prompt3_flash": 0
+}
+```
+
+`*_size` fields are human-readable strings, not byte counts; modules with value `0` are not installed. The `prompt2_*` / `prompt3_*` fields show the update system can also stage **valve** firmware.
 
 ### `ftp_status.cgi`
 
-Check the status of an ongoing FTP transfer.
+Check the status of an ongoing FTP transfer. The full field set — including the per-component update matrix (`ftp_ctl_image_size`, `ftp_ui_image_size`, `ftp_ui_app_file`, eight `ftp_ui_rfs_fileN`, `ftp_ui_touch_file`, `ftp_ui_lang_file`, `ftp_coproc_image_size`, valve flash/EEPROM sizes) — is documented in [../firmware-update.md](../firmware-update.md#the-full-update-matrix).
 
 ### `check_updates.cgi`
 
@@ -483,7 +501,23 @@ curl -X POST \
 
 ### `files.cgi`
 
-List files stored on the system.
+List files stored on the system — an HTML rendering of drive `a:\`. Every production unit shows the same shape (firmware staging directory plus config tables):
+
+```text
+a:\
+corys.txt                            size 144 bytes
+\images
+    temp.txt                         size 16 bytes
+    dtvplus2_app_v0.0.3.89.S19       size 4715750 bytes
+    ui_amulet_v0.1.3.72.S19          size 12992824 bytes
+    versions.txt                     size 171 bytes
+    dtvplus2_uiapp_v0.0.7.44.pack.tar  size 6440960 bytes
+data_table.txt                       size 10221 bytes
+data_table_default.txt               size 10221 bytes
+\backup
+```
+
+> **Important:** there is no corresponding *download* CGI, and the web server's document root is a read-only filesystem compiled into the firmware image — it cannot reach `a:\`. This endpoint enumerates filenames only. Extraction requires hardware access; see [../repair/firmware-extraction.md](../repair/firmware-extraction.md).
 
 ### `unpack_bin.cgi`
 
@@ -550,4 +584,6 @@ When `CGI_SHOWER_LOCK` is active, configuration-changing endpoints may return er
 2. **Tool compatibility:** Chrome works most reliably. Postman and PowerShell `Invoke-WebRequest` often fail due to header handling differences.
 3. **Caching:** Always set `cache: false` (or append a cache-busting query parameter) in AJAX calls.
 4. **Response parsing:** Many CGI responses omit the `Content-Length` header. Read until the socket closes rather than relying on a content length.
-5. **Base URL:** All endpoints are relative to the DTV+ IP address, e.g. `http://192.168.1.100/quick_shower.cgi?...`
+5. **HTTP/0.9 for `.cgi`:** CGI endpoints answer with a bare body — no status line, no headers. Node `fetch` and Python `requests` reject this outright; use `curl --http0.9`. Static files (`.html`, `.js`, `.png`) get a normal `HTTP/1.0` response. Error responses are small HTML documents.
+6. **No `HEAD`:** `HEAD` requests return 404 even for existing endpoints. Use `GET`.
+7. **Base URL:** All endpoints are relative to the DTV+ IP address, e.g. `http://192.168.1.100/quick_shower.cgi?...`

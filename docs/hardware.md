@@ -274,6 +274,24 @@ Standard RJ45 connector, 10/100 Mbps, T568B pinout.
 
 ---
 
+## Factory Debug and Service Access
+
+The board photograph in [Images/](../Images/Images.md) shows several unpopulated factory debug/service footprints. Identification from board photography; pinouts unverified — confirm with a multimeter before attaching anything.
+
+| Marker | Footprint | Assessment |
+|---|---|---|
+| J201 | 2x13 (26-pin) | **ColdFire BDM debug** — matches the standard Freescale 26-pin ColdFire BDM layout. A P&E Micro Multilink/Cyclone (or TBLCF) here can halt the CPU and dump RAM/flash. |
+| J904 | 4-pin | **Serial console** — consistent with a 3.3 V UART (start at 115200 8N1). If the MQX shell or boot logging was left enabled, this is interactive access. |
+| J903 | 2x8 | Adjacent debug/expansion header — uncharacterized |
+| SW201 | pushbutton | Reset / boot-mode |
+| SW101 | slide switch | Boot-mode / service selection — uncharacterized |
+
+The board also has a coin cell (RTC backup) and extensive labelled test points (TP###).
+
+> **Why this matters:** these footprints are the practical firmware-extraction surface. See [repair/firmware-extraction.md](repair/firmware-extraction.md).
+
+---
+
 ## Touchscreen Variants
 
 ### Amulet (ColdFire-based)

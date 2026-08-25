@@ -31,6 +31,19 @@ The touchscreen interface provides user interaction for the DTV+ system. Two har
 - Enhanced graphics rendering
 - File transfer support for firmware updates and custom assets
 
+### Identifying the hardware version
+
+The version string is the reliable way to tell the two apart. The controller's `amulet_version_string` field is a legacy name that outlived the hardware change — do not trust the field name, trust the number:
+
+| Reports | Is | Firmware file line |
+|---|---|---|
+| `0.1.x` / 3.7x | V1 (Amulet, ColdFire MCF52252) | `ui_amulet_v*.S19` |
+| `0.0.7.x` | V2 (Linux) | `dtvplus2_uiapp_v*.pack.tar` |
+
+Corroborating evidence is public: Kohler's Konnect-module install sheet (an FCC exhibit — see [../public-record.md](../public-record.md)) requires "99693-P-NA UI sw **7.44**", which matches the Linux pack `dtvplus2_uiapp_v0.0.7.44.pack.tar` exactly.
+
+The V2 panel reports four component versions, implying at least four updatable parts: UI app, coprocessor, language pack, and touch controller.
+
 ## Communication Model
 
 ```

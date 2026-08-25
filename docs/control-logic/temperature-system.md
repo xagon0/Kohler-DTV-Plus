@@ -172,7 +172,7 @@ When working with `save_variable.cgi`, you must encode/decode Cx2 yourself.
 
 Each valve can be calibrated to correct for installation-specific hot and cold supply temperatures. Calibration offsets are stored in the valve's EEPROM and affect how the valve interprets setpoints.
 
-If calibration values are incorrect, the actual delivered water temperature will differ from the setpoint. See the [valve calibration section](../repair/valve-calibration.md) for calibration procedures.
+If calibration values are incorrect, the actual delivered water temperature will differ from the setpoint. See the [valve calibration section](../devices/valve-control.md#calibration-system) for calibration procedures.
 
 ---
 
